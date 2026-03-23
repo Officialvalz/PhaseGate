@@ -63,7 +63,6 @@ public class ArrayFunctions {
 
         
         int[] searchNumbers = {10, 30, 50, 70, 90};
-
         int foundIndex = linearSearch(searchNumbers, 50);
         System.out.println("linearSearch for 50 = " + foundIndex);
         
