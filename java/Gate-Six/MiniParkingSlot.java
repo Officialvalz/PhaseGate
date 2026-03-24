@@ -1,0 +1,109 @@
+import java.util.Scanner; 
+
+public class MiniParkingSlot {
+    static String[] parkingLot = new String[20];
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int choice;
+
+        while(true){
+            System.out.println("\n=====YOUR WELCOME TO MY MINI PARKING SLOT =====");
+            System.out.println("1. Park a Car");
+            System.out.println("2. Remove a Car");
+            System.out.println("3. Check if Lot is Full");
+            System.out.println("4. Search for a Car");
+            System.out.println("5. Reset Parking Lot");
+            System.out.println("0. Exit");
+            System.out.print("Enter your choice: ");
+            
+            choice = scanner.nextInt();
+
+            if (choice == 1) {
+                System.out.print("Enter Car Number to park: ");
+                int carNumber = scanner.nextInt();
+                parkCar(carNumber);
+                System.out.println("Car " + carNumber + " parked successfully!");
+			
+				
+            } else if (choice == 2) {
+                System.out.print("Enter Car Number to remove: ");
+                int carNumber = scanner.nextInt();
+                removeCar(carNumber);
+                System.out.println("Car " + carNumber + " removed.");
+				break;
+				
+            } else if (choice == 3) {
+                if (isFull()) {
+                    System.out.println("Parking lot is FULL.");
+                } else {
+                    System.out.println("Parking lot has space available.");
+                }
+
+            } else if (choice == 4) {
+                System.out.print("Enter Car Number to search: ");
+                int carNumber = scanner.nextInt();
+                if (contains(carNumber)) {
+                    System.out.println("Car " + carNumber + " Is in the lot.");
+                } else {
+                    System.out.println("Car " + carNumber + " is not in the lot.");
+                }
+
+            } else if (choice == 5) {
+                resetLot();
+                System.out.println("Parking lot has been reset.");
+
+            } else if (choice == 0) {
+                System.out.println("Goodbye!");
+
+            } else {
+                System.out.println("Invalid choice. Try again.");
+            }
+
+       		 do {
+       		 
+		} while (choice != 0);
+		}
+
+    }
+
+    static void parkCar(int carNumber) {
+        for (int index = 0; index < parkingLot.length; index++) {
+            if (parkingLot[index] == null) {
+                parkingLot[index] = String.valueOf(carNumber);
+                return;
+            }
+        }
+    }
+
+    static void removeCar(int carNumber) {
+        for (int index = 0; index < parkingLot.length; index++) {
+            if (String.valueOf(carNumber).equals(parkingLot[index])) {
+                parkingLot[index] = null;
+                return;
+            }
+        }
+    }
+
+    static void resetLot() {
+        parkingLot = new String[20];
+    }
+
+    static boolean isFull() {
+        for (int index = 0; index < parkingLot.length; index++) {
+            if (parkingLot[index] == null) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    static boolean contains(int carNumber) {
+        for (int index = 0; index < parkingLot.length; index++) {
+            if (String.valueOf(carNumber).equals(parkingLot[index])) {
+                return true;
+            }
+        }
+        return false;
+    }
+}
