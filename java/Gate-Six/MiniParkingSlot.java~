@@ -1,6 +1,6 @@
 import java.util.Scanner; 
 public class MiniParkingSlot {
-    static String[] parkingLot = new String[20];
+   
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -62,7 +62,7 @@ public class MiniParkingSlot {
 		}
 
     }
-
+ static String[] parkingLot = new String[20];
     static void parkCar(int carNumber) {
         for (int index = 0; index < parkingLot.length; index++) {
             if (parkingLot[index] == null) {
