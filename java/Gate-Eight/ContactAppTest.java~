@@ -1,0 +1,40 @@
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
+
+public class ContactAppTest {
+
+    @Test
+    void testAddContact() {
+        ContactService service = new ContactService();
+        service.add("John", "08012345678");
+
+        assertEquals("John", service.find("08012345678"));
+    }
+
+    @Test
+    void testFindContactNotFound() {
+        ContactService service = new ContactService();
+
+        assertNull(service.find("09000000000"));
+    }
+
+    @Test
+    void testRemoveContact() {
+        ContactService service = new ContactService();
+        service.add("John", "08012345678");
+
+        boolean result = service.remove("08012345678");
+
+        assertTrue(result);
+        assertNull(service.find("08012345678"));
+    }
+
+    @Test
+    void testRemoveContactNotFound() {
+        ContactService service = new ContactService();
+
+        boolean result = service.remove("09000000000");
+
+        assertFalse(result);
+    }
+}

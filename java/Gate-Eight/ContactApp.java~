@@ -1,0 +1,76 @@
+import java.util.*;
+public class ContactApp {
+    static Scanner input = new Scanner(System.in);
+    
+    String[] nameList  = new String[100];
+    String[] phoneList = new String[100];
+    int totalContacts = 0;
+
+    public static void main(String[] args) {
+        while (true) {
+            System.out.println("1. Add");
+            System.out.println("2. Remove");
+            System.out.println("3. Find");
+            System.out.println("4. Exit");
+            System.out.print("Please Enter Your Choose: ");
+            int choice = input.nextInt();
+            input.nextLine();
+
+            if (choice == 1) addContact();
+            else if (choice == 2) removeContact();
+            else if (choice == 3) findContact();
+            else if (choice == 4) 
+            break;
+        }
+    }
+
+    static void addContact() {
+        System.out.print("Enter Name: ");
+        String newName = input.nextLine();
+        System.out.print("Enter Phone: ");
+        String newPhone = input.nextLine();
+
+        nameList[totalContacts]  = newName;
+        phoneList[totalContacts] = newPhone;
+        totalContacts++;
+        System.out.println("Succesfully Added✅️");
+    }
+
+    static void removeContact() {
+        System.out.print("Enter phone Number to delete: ");
+        String targetPhone = input.nextLine();
+
+        int foundIndex = 0;
+        for (int index = 0; index < totalContacts; index++) {
+            if (phoneList[index].equals(targetPhone)) {
+                foundIndex = index;
+                break;
+            }
+        }
+
+        if (foundIndex != 0) {
+            for (int count = foundIndex; count < totalContacts - 1; count++) {
+                nameList[count]  = nameList[count + 1];
+                phoneList[count] = phoneList[count+ 1];
+            }
+            totalContacts--;
+            System.out.println("Succesfully Removed✅️");
+        } else {
+            System.out.println("Not found!");
+        }
+    }
+
+    static void findContact() {
+        System.out.print("Enter phone: ");
+        String targetPhone = input.nextLine();
+
+        for (int index = 0; index < totalContacts; index++) {
+            if (phoneList[index].equals(targetPhone)) {
+                System.out.println("Name: "  + nameList[index]);
+                System.out.println("Phone: " + phoneList[index]);
+                return;
+            }
+        }
+        System.out.println("Not found!");
+    }
+}
